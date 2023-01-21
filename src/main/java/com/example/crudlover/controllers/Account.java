@@ -4,6 +4,7 @@ import com.example.crudlover.dtos.AccountDTO;
 import com.example.crudlover.models.AccountModel;
 import com.example.crudlover.repositories.AccountRepository;
 import com.example.crudlover.services.AccountService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class Account {
     }
 
     @PostMapping("/create")
-    public void create(@RequestBody AccountDTO req) {
+    public void create(@RequestBody @Valid AccountDTO req) {
          service.save(req);
     }
 
@@ -33,7 +34,7 @@ public class Account {
     }
 
     @PutMapping("update/{id}")
-    public void updateAccount(@PathVariable String id, @RequestBody AccountDTO req) {
+    public void updateAccount(@PathVariable String id, @Valid @RequestBody AccountDTO req) {
          service.updateAccountById(id,req);
     }
 
