@@ -35,4 +35,14 @@ public class AccountService {
         return message;
     }
 
+    public void updateAccountById(String id, AccountDTO data) {
+        repository.findById(id).map((account) -> {
+            account.setEmail(data.email());
+            account.setName(data.name());
+            account.setPassword(data.password());
+            return repository.save(account);
+        });
+
+    }
+
 }

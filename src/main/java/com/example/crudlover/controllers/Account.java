@@ -32,4 +32,9 @@ public class Account {
        return service.deleteAccountById(id);
     }
 
+    @PutMapping("update/{id}")
+    public void updateAccount(@PathVariable String id, @RequestBody AccountDTO req) {
+         service.updateAccountById(id,req);
+    }
+
 }
