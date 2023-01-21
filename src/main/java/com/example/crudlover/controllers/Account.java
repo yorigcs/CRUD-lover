@@ -27,4 +27,9 @@ public class Account {
         return service.findAll();
     }
 
+    @DeleteMapping("/delete/{id}")
+    public  String deleteAccount(@PathVariable String id) {
+       return service.deleteAccountById(id);
+    }
+
 }

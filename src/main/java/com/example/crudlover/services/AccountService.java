@@ -3,10 +3,10 @@ package com.example.crudlover.services;
 import com.example.crudlover.dtos.AccountDTO;
 import com.example.crudlover.models.AccountModel;
 import com.example.crudlover.repositories.AccountRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountService {
@@ -22,6 +22,17 @@ public class AccountService {
 
     public  List<AccountModel> findAll() {
         return repository.findAll();
+    }
+
+    public String deleteAccountById(String id) {
+        String message = "Ok";
+        Optional<AccountModel> account = repository.findById(id);
+        if(account.isPresent()) {
+            repository.deleteById(id);
+            return message;
+        }
+        message = "This account id doesn't exists.";
+        return message;
     }
 
 }
